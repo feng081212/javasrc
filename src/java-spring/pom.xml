@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>java</groupId>
+		<artifactId>java</artifactId>
+		<version>1.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<artifactId>java-spring</artifactId>	
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<description>The demo module of qtyd project</description>
+	<properties>
+		<skip_maven_deploy>true</skip_maven_deploy>
+	</properties>
+	<modules>
+		<module>java-spring-mvc</module>
+		<module>java-spring-jdbc</module>
+		<module>java-spring-base</module>
+	</modules>
+  
+</project>

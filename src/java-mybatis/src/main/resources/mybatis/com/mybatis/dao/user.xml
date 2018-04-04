@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.dao.UserDao">
+
+	<select id="selectsql" parameterType="String" resultType="Map">
+		select * from user where username = #{username} limit 1
+	</select>
+	
+	<select id="selectReturnBean" parameterType="String" resultType="user">
+		select * from user where username = #{username} limit 1
+	</select>
+	
+	<insert id="insertOne" parameterType="user" >
+		insert into user 
+			(id,username,password,age)
+		values
+			(#{id},#{username},#{password},#{age})
+	</insert>
+	
+	<insert id="insertList" parameterType="user" >
+		insert into user 
+			(id,username,password,age)
+		values
+			(#{id},#{username},#{password},#{age})
+	</insert>
+</mapper> 

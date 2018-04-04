@@ -1,0 +1,7 @@
+git status 查看一下被删除的文件是不是成功，成功删除会显示绿色
+git init
+git add README.md
+git commit -m "add src"
+git remote add origin git@github.com:feng081212/javasrc.git
+git push -u origin master
+pause

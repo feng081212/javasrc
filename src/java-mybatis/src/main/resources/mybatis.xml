@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+  	
+    <!-- 加载属性文件 -->  
+    <properties resource="db.properties">  
+        <!--properties中还可以配置一些属性名和属性值 -->  
+        <!-- <property name="jdbc.driver" value=""/> -->  
+    </properties>  
+  
+    <!-- 全局配置参数，需要时再设置 -->  
+    <!-- <settings> </settings> -->  
+  
+    <typeAliases>  
+        <!-- 别名定义 -->  
+        <!-- 针对单个别名定义 type：类型的路径 alias：别名 -->  
+        <typeAlias type="com.bean.User" alias="user"/>   
+        <!-- 批量别名定义 指定包名，mybatis自动扫描包中的po类，自动定义别名，别名就是类名（首字母大写或小写都可以） 
+        <package name="cn.com.mybatis.mapper" />  
+        -->  
+    </typeAliases>  
+  
+    <!-- 和spring整合后 environments配置将废除 -->  
+    <environments default="development">  <!-- 默认的数据源 default 与 environment子节点内的id要一致-->
+        <environment id="development">  
+            <!-- 事务管理器
+            	MANAGED 手动管理事务
+            	JDBC 通过数据管理事务 
+            -->
+            <transactionManager type="JDBC" />  
+            
+            <!-- 数据库连接数据源
+            	UNPOOLED 不使用数据库连接池
+            	POOLED 使用数据库连接池，使用MyBatis自带的数据库连接池
+            	JNDI 接收第三方数据库连接池
+             -->
+            <dataSource type="POOLED">  
+                <property name="driver" value="${driver}" />  
+                <property name="url" value="${url}" />  
+                <property name="username" value="${username}" />  
+                <property name="password" value="${password}" />  
+            </dataSource>  
+        </environment>  
+    </environments>  
+  
+  	
+  
+    <!-- 加载 映射文件 -->  
+    <mappers>
+        <!--通过resource方法一次加载一个映射文件 -->  
+        <!--注意这里的路径和xml文件  -->
+        <!-- <mapper resource="mybatis/com/mybatis/dao/user.xml" />  --> 
+  
+        <!-- 批量加载mapper 指定mapper接口的包名，mybatis自动扫描包下边所有mapper接口进行加载 -->  
+        <!-- 遵循一些规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录 -->  
+        <!-- 中 上边规范的前提是：使用的是mapper代理方法   -->
+        <package name="com.db.mybatis.mapper" />  
+          
+    </mappers>  
+  
+</configuration>

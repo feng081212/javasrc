@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>java</groupId>
+		<artifactId>java-spring</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>java-spring-mvc</artifactId>
+	<packaging>war</packaging>
+	<name>${project.artifactId}</name>
+	  	
+  	<dependencies>
+  		<dependency>
+  			<groupId>java</groupId>
+  			<artifactId>java-interface</artifactId>
+  			<version>1.0</version>
+  		</dependency>
+  	
+  		<dependency>
+  			<groupId>java</groupId>
+  			<artifactId>java-base</artifactId>
+  			<version>1.0</version>
+  		</dependency>
+  		
+  		<dependency>
+  			<groupId>java</groupId>
+  			<artifactId>java-spring-base</artifactId>
+  			<version>1.0</version>
+  		</dependency>
+  		
+  		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.tomcat.maven</groupId>
+		    <artifactId>tomcat8-maven-plugin</artifactId>
+		    <version>3.0-r1756463</version>
+		</dependency>
+		<!-- 
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-war-plugin</artifactId>
+		    <version>3.2.0</version>
+		</dependency>
+		 -->
+  	</dependencies>
+  	
+  	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<configuration>
+					<URIEncoding>UTF-8</URIEncoding>
+					<port>8080</port>
+					<path>/java-spring-mvc</path>
+					<contextReloadable>true</contextReloadable>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+	            <groupId>org.apache.tomcat.maven</groupId>
+	            <artifactId>tomcat8-maven-plugin</artifactId>
+	            <version>3.0-r1756463</version>
+	            <!-- 在package阶段启动web容器 -->
+	            <executions>
+	              <execution>
+	                      <!-- 打包阶段 -->
+	                    <phase>package</phase>
+	                    <!-- 运行目标 -->
+	                    <goals>
+	                        <goal>run</goal>
+	                    </goals>
+	              </execution>
+	          </executions>
+	        </plugin>
+		</plugins>
+  	</build>
+  
+</project>
