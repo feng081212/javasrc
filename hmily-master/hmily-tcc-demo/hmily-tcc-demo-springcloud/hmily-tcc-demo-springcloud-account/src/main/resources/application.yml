@@ -1,0 +1,82 @@
+server:
+  port: 8882
+  contextPath: /account-service
+  address: 0.0.0.0
+
+
+spring:
+    datasource:
+        driver-class-name:  com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.1.68:3306/tcc_account?useUnicode=true&characterEncoding=utf8
+        username: xiaoyu
+        password: Wgj@555888
+        initialSize: 20
+        minIdle: 20
+        maxActive: 100
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 30000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,slf4j
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    application:
+      name: account-service
+
+hmily:
+    tcc :
+        serializer : kryo
+        recoverDelayTime : 128
+        retryMax : 30
+        scheduledDelay : 128
+        scheduledThreadMax :  10
+        repositorySupport : db
+        tccDbConfig :
+                 driverClassName  : com.mysql.jdbc.Driver
+                 url :  jdbc:mysql://192.168.1.68:3306/tcc?useUnicode=true&amp;characterEncoding=utf8
+                 username : xiaoyu
+                 password : Wgj@555888
+
+       # repositorySupport : redis
+       #         hostName  : 192.168.1.68
+       #         port      :  6379
+       #         password  :
+
+
+       # repositorySupport : zookeeper
+       #         host      : 92.168.1.73:2181
+       #         sessionTimeOut      :  100000
+       #         rootPath  : /tcc
+
+       # repositorySupport : mongodb
+       #       mongoDbUrl  : 192.168.1.68:27017
+       #       mongoDbName  :  happylife
+       #       mongoUserName  : xiaoyu
+       #       mongoUserPwd   : 123456
+
+       # repositorySupport : file
+       #         path      : /account
+       #         prefix    :  account
+
+mybatis:
+  type-aliases-package: com.hmily.tcc.demo.springcloud.account.entity
+  config-location: classpath:mybatis/mybatis-config.xml
+#${random.int[9000,9999]}
+eureka:
+ client:
+     serviceUrl:
+       defaultZone: http://localhost:8761/eureka/
+
+account-service :
+   ribbon.NFLoadBalancerRuleClassName : com.netflix.loadbalancer.RandomRule
+
+logging:
+            level:
+                root: info
+                com.hmily.tcc : debug
+            path: "./logs"
+
